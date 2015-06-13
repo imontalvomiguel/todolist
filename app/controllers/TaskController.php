@@ -62,8 +62,9 @@ class TaskController extends \BaseController {
 	 */
 	public function edit($todo_id, $task_id)
 	{
-		$task = Task::findOrFail($task_id);
-		// $todo = $task->todo;
+        $todoList = Todo::findOrFail($todo_id);
+		$task = $todoList->tasks()->findOrFail($task_id);
+
 		return View::make('tasks.edit')->withTask($task)->withTodoId($todo_id);
 	}
 
